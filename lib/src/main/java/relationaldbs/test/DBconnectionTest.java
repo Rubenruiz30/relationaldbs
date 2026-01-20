@@ -25,7 +25,7 @@ public class DBconnectionTest {
             } catch (SQLException e) {
                 // 42P04 = database already exists
                 if ("42P04".equals(e.getSQLState())) {
-                    System.out.println("La base de datos ya existe");
+                    System.out.println("La base de datos ya existe y no voy a crear otra");
                 } else {
                     throw e;
                 }
