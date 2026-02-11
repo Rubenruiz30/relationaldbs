@@ -28,13 +28,15 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation(libs.guava)
     // Source: https://mvnrepository.com/artifact/org.postgresql/postgresql
-implementation("org.postgresql:postgresql:42.7.8")
+	implementation("org.postgresql:postgresql:42.7.8")
+	// Source: https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+	implementation("ch.qos.logback:logback-classic:1.4.14")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(19)
     }
 }
 
