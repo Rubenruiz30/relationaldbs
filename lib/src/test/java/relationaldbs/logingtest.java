@@ -15,7 +15,7 @@ public class logingtest {
 	static Logger logger = (Logger) LoggerFactory.getLogger(logingtest.class);
 
 	public static void main(String[] args) {
-		logger.setLevel(Level.ERROR);
+		//logger.setLevel(Level.ERROR);
 		division(23, 0);
 
 	}

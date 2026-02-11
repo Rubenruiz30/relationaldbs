@@ -1,0 +1,28 @@
+2026-02-11 13:24:45 [main] INFO  relationaldbs.logingtest -
+				info log: this is used to show normal information that happens in our program
+2026-02-11 13:24:45 [main] WARN  relationaldbs.logingtest -
+				warn log: used to show potential
+2026-02-11 13:24:45 [main] ERROR relationaldbs.logingtest -
+				error log: used for loging problems and error that concern
+2026-02-11 13:31:23 [main] INFO  relationaldbs.logingtest -
+				info log: this is used to show normal information that happens in our program
+2026-02-11 13:31:23 [main] WARN  relationaldbs.logingtest -
+				warn log: used to show potential
+2026-02-11 13:31:23 [main] ERROR relationaldbs.logingtest -
+				error log: used for loging problems and error that concern
+2026-02-11 13:37:19 [main] INFO  relationaldbs.logingtest -
+				info log: this is used to show normal information that happens in our program
+2026-02-11 13:37:19 [main] WARN  relationaldbs.logingtest -
+				warn log: used to show potential
+2026-02-11 13:37:19 [main] ERROR relationaldbs.logingtest -
+				error log: used for loging problems and error that concern
+2026-02-11 13:37:35 [main] INFO  relationaldbs.logingtest -
+				info log: this is used to show normal information that happens in our program
+2026-02-11 13:37:35 [main] WARN  relationaldbs.logingtest -
+				warn log: used to show potential
+2026-02-11 13:37:35 [main] ERROR relationaldbs.logingtest -
+				error log: used for loging problems and error that concern
+2026-02-11 13:40:49 [main] INFO  relationaldbs.logingtest - info log: this is used to show normal information that happens in our program
+2026-02-11 13:40:49 [main] WARN  relationaldbs.logingtest - warn log: used to show potential
+2026-02-11 13:42:02 [main] INFO  relationaldbs.logingtest - info log: this is used to show normal information that happens in our program
+2026-02-11 13:42:02 [main] WARN  relationaldbs.logingtest - warn log: used to show potential
