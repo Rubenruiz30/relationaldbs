@@ -1,16 +1,14 @@
 package relationaldbs.model;
 
-import java.util.jar.Attributes.Name;
-
-public class user {
+public class User {
 //Fields
 	private String name;
 	private String surname;
 	private double balance;
 	private String password;
 	private String residence;
-	private String login;
-	private String memoryLogin;
+	private boolean login;
+	private String nicknameString;
 	private boolean singup;
 	
 //Methods
@@ -47,20 +45,20 @@ public class user {
 		this.residence = residence;
 	}
 
-	public String getLogin() {
+	public boolean getLogin() {
 		return login;
 	}
 
-	public void setLogin(String login) {
+	public void setLogin(Boolean login) {
 		this.login = login;
 	}
 
 	public String getMemoryLogin() {
-		return memoryLogin;
+		return nicknameString;
 	}
 
 	public void setMemoryLogin(String memoryLogin) {
-		this.memoryLogin = memoryLogin;
+		this.nicknameString = memoryLogin;
 	}
 
 	public boolean isSingup() {
@@ -81,10 +79,16 @@ public class user {
 	
 	
 //Constructors
-	public  user(String name, String surname, double balance) {
+	public  User(String name, String surname, double balance,String password, String residence, Boolean login, String memorylogin, boolean singup) {
 		this.name = name;
 		this.surname = surname;
 		this.balance = balance;
+		this.password = password;
+		this.residence = residence;
+		this.login = login;
+		this.nicknameString = memorylogin;
+		this.singup = singup;
 	}
+	
 
 }
