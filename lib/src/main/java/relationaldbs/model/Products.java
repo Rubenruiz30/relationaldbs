@@ -4,6 +4,7 @@ public class Products {
 private String name;
 private String size;
 public String price;
+private long id;
 public String getName() {
 	return name;
 }
@@ -23,11 +24,18 @@ public void setPrice(String price) {
 	this.price = price;
 
 }
-public  Products(String name, String size, String price) {
+public long getId() {
+	return id;
+}
+public void setId(long id) {
+	this.id = id;
+}
+
+public  Products(String name, String size, String price, long id) {
 	this.name = name;
 	this.price = price;
 	this.size = size;
-	
+	this.id  = id;
 }
 
 

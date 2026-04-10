@@ -10,6 +10,7 @@ public class User {
 	private boolean login;
 	private String nicknameString;
 	private boolean singup;
+	private long id;
 	
 //Methods
 
@@ -53,12 +54,12 @@ public class User {
 		this.login = login;
 	}
 
-	public String getMemoryLogin() {
+	public String getnicknameString() {
 		return nicknameString;
 	}
 
-	public void setMemoryLogin(String memoryLogin) {
-		this.nicknameString = memoryLogin;
+	public void setnicknameString(String nicknameString) {
+		this.nicknameString = nicknameString;
 	}
 
 	public boolean isSingup() {
@@ -76,19 +77,29 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	
 //Constructors
-	public  User(String name, String surname, double balance,String password, String residence, Boolean login, String memorylogin, boolean singup) {
+	public  User(String name, String surname, double balance,String password, String residence, Boolean login, String nicknameString, boolean singup, long id) {
 		this.name = name;
 		this.surname = surname;
 		this.balance = balance;
 		this.password = password;
 		this.residence = residence;
 		this.login = login;
-		this.nicknameString = memorylogin;
+		this.nicknameString = nicknameString;
 		this.singup = singup;
+		this.id = id;
 	}
+
+
 	
 
 }
