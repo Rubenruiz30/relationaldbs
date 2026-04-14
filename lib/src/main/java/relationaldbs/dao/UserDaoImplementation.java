@@ -3,8 +3,11 @@ package relationaldbs.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.PseudoColumnUsage;
 import java.sql.SQLException;
 import java.util.List;
+
+import org.postgresql.jdbc.PgArray;
 
 import relationaldbs.model.User;
 
@@ -21,13 +24,15 @@ public class UserDaoImplementation implements UserDao {
 	    private static final String USERNAME = "postgres";
 	    private static final String PASSWORD = "admin";
 	    static String createTableSQL =
-	                "CREATE TABLE IF NOT EXISTS users (" +
-	                "id SERIAL PRIMARY KEY, " +
-	                "username VARCHAR(255), " +
-	                "psw VARCHAR(255), " +
-	                "isVIP BOOLEAN, " +
-	                "balance FLOAT" +
-	                ");";
+	    		"CREATE TABLE IF NOT EXISTS Users (" +
+	    				"password VARCHAR(255), " +
+	    				"name VARCHAR(255), " +
+	    				"nicknameString VARCHAR(255), " +
+	    				"balance DOUBLE, " +
+	    				"singup BOOLEAN, " +
+	    				"surname VARCHAR(255), " +
+	    				"residence VARCHAR(255)" +
+	    				");";
 	    
 	@Override
 	public boolean insert(User user) {
@@ -37,7 +42,7 @@ public class UserDaoImplementation implements UserDao {
 		/**
 		 * Insert sql
 		 */
-		String insertSQL = "INSERT INTO users (name, password, isVIP, balance) " +
+		String insertSQL = "INSERT INTO users (password, name, nicknameString, balance, singup, surname, residence) " +
         "VALUES (?, ?, ?, ?)";
 		/**
 		 * create an object of connection to establish
@@ -54,6 +59,12 @@ public class UserDaoImplementation implements UserDao {
 				PreparedStatement ps = conn.prepareStatement(insertSQL)) {
 		ps.setString(1, user.getPassword());
 		ps.setString(2, user.getName());
+		ps.setString(3, user.getnicknameString());
+		ps.setDouble(4,  user.getBalance());
+		ps.setBoolean(5, user.isSingup());
+		ps.setString(6, user.getSurname());
+		ps.setString(7, user.getResidence());
+		
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

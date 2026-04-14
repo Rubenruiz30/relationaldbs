@@ -56,14 +56,15 @@ public class DBconnectionTest {
     private static void createTable() {
 
         String createTableSQL =
-                "CREATE TABLE IF NOT EXISTS users (" +
-                "id SERIAL PRIMARY KEY, " +
-                "username VARCHAR(255), " +
-                "psw VARCHAR(255), " +
-                "isVIP BOOLEAN, " +
-                "balance FLOAT" +
-                ");";
-
+        		"CREATE TABLE IF NOT EXISTS Users (" +
+	    				"password VARCHAR(255), " +
+	    				"name VARCHAR(255), " +
+	    				"nicknameString VARCHAR(255), " +
+	    				"balance DOUBLE, " +
+	    				"singup BOOLEAN, " +
+	    				"surname VARCHAR(255), " +
+	    				"residence VARCHAR(255)" +
+	    				");";
         try (Connection conn =
                      DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
              PreparedStatement ps =
