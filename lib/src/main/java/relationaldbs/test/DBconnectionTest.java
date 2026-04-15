@@ -60,9 +60,10 @@ public class DBconnectionTest {
 	    				"password VARCHAR(255), " +
 	    				"name VARCHAR(255), " +
 	    				"nicknameString VARCHAR(255), " +
-	    				"balance DOUBLE, " +
+	    				"balance float, " +
 	    				"singup BOOLEAN, " +
 	    				"surname VARCHAR(255), " +
+	    				"id serial primary key," +
 	    				"residence VARCHAR(255)" +
 	    				");";
         try (Connection conn =
@@ -85,8 +86,8 @@ public class DBconnectionTest {
             String username, String psw, boolean isVIP, float balance) {
 
         String insertSQL =
-                "INSERT INTO users (username, psw, isVIP, balance) " +
-                "VALUES (?, ?, ?, ?)";
+                "INSERT INTO users (name ,  surname, balance,password,  residence,  login,  nicknameString, singup)  " +
+                "VALUES (?, ?, ?, ?,? ,?, ?, ?)";
 
         try (Connection conn =
                      DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);

@@ -43,7 +43,7 @@ public class UserDaoImplementation implements UserDao {
 		 * Insert sql
 		 */
 		String insertSQL = "INSERT INTO users (password, name, nicknameString, balance, singup, surname, residence) " +
-        "VALUES (?, ?, ?, ?)";
+        "VALUES (?, ?, ?, ?,?,?,?)";
 		/**
 		 * create an object of connection to establish
 		 * a network connection with
@@ -65,7 +65,7 @@ public class UserDaoImplementation implements UserDao {
 		ps.setString(6, user.getSurname());
 		ps.setString(7, user.getResidence());
 		
-			
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
