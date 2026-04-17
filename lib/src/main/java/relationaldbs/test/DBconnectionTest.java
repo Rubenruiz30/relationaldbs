@@ -56,17 +56,17 @@ public class DBconnectionTest {
     private static void createTable() {
 
         String createTableSQL =
-        		"CREATE TABLE IF NOT EXISTS Users (" +
-	    				"password VARCHAR(255), " +
-	    				"name VARCHAR(255), " +
-	    				"nicknameString VARCHAR(255), " +
-	    				"balance float, " +
-	    				"singup BOOLEAN, " +
-	    				"surname VARCHAR(255), " +
-	    				"id serial primary key," +
-	    				"residence VARCHAR(255)" +
-	    				");";
-        try (Connection conn =
+        		  "CREATE TABLE IF NOT EXISTS Users (" +
+        	                "password VARCHAR(255), " +
+        	                "name VARCHAR(255), " +
+        	                "nicknameString VARCHAR(255), " +
+        	                "balance float, " +
+        	                "singup BOOLEAN, " +
+        	                "surname VARCHAR(255), " +
+        	                "login BOOLEAN, " +
+        	                "id serial primary key, " +
+        	                "residence VARCHAR(255)" +
+        	                ");";      try (Connection conn =
                      DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
              PreparedStatement ps =
                      conn.prepareStatement(createTableSQL)) {
@@ -112,7 +112,7 @@ public class DBconnectionTest {
     private static void deleteUserByUsername(String username) {
 
         String deleteSQL =
-                "DELETE FROM users WHERE username = ?";
+                "DELETE FROM users WHERE id = ?";
 
         try (Connection conn =
                      DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);

@@ -24,15 +24,17 @@ public class UserDaoImplementation implements UserDao {
 	    private static final String USERNAME = "postgres";
 	    private static final String PASSWORD = "admin";
 	    static String createTableSQL =
-	    		"CREATE TABLE IF NOT EXISTS Users (" +
-	    				"password VARCHAR(255), " +
-	    				"name VARCHAR(255), " +
-	    				"nicknameString VARCHAR(255), " +
-	    				"balance DOUBLE, " +
-	    				"singup BOOLEAN, " +
-	    				"surname VARCHAR(255), " +
-	    				"residence VARCHAR(255)" +
-	    				");";
+	    	    "CREATE TABLE IF NOT EXISTS users (" +
+	    	    "id BIGINT PRIMARY KEY, " +
+	    	    "password VARCHAR(255), " +
+	    	    "name VARCHAR(255), " +
+	    	    "nicknameString VARCHAR(255), " +
+	    	    "balance DOUBLE PRECISION, " +
+	    	    "singup BOOLEAN, " +
+	    	    "surname VARCHAR(255), " +
+	    	    "residence VARCHAR(255), " +
+	    	    "login BOOLEAN" +
+	    	    ");";
 	    
 	@Override
 	public boolean insert(User user) {
@@ -75,16 +77,51 @@ public class UserDaoImplementation implements UserDao {
 
 	@Override
 	public boolean delete(long id) {
-		// TODO Auto-generated method stub
-		return false;
+	    String deleteSQL = "DELETE FROM users WHERE id = ?";
+
+	    try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+	         PreparedStatement ps = conn.prepareStatement(deleteSQL)) {
+
+	        ps.setLong(1, id);
+	        int search = ps.executeUpdate();
+
+	        if (search > 0) {
+	            System.out.println("Usuario " + id + " eliminado");
+	            return true;
+	        } else {
+	            System.out.println("No existe un usuario con id " + id);
+	            return false;
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
-		
-	}
+	    String sql = "UPDATE users SET name=?, Surname=?, Balance=?, Password=?, Residence=?, login=?, nicknameString=?, Signup=? WHERE id=?";
 
+	    try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setString(1, user.getName());
+	        ps.setString(2, user.getSurname());
+	        ps.setDouble(3, user.getBalance());
+	        ps.setString(4, user.getPassword());
+	        ps.setString(5, user.getResidence());
+	        ps.setBoolean(6, user.getLogin());
+	        ps.setString(7, user.getnicknameString());
+	        ps.setBoolean(8, user.isSingup());
+	        ps.setLong(9, user.getId());
+
+	        ps.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 	@Override
 	public User find(long id) {
 		// TODO Auto-generated method stub
