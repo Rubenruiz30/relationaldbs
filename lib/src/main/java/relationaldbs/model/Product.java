@@ -1,6 +1,6 @@
 package relationaldbs.model;
 
-public class Products {
+public class Product {
 private String name;
 private String size;
 public String price;
@@ -31,7 +31,7 @@ public void setId(long id) {
 	this.id = id;
 }
 
-public  Products(String name, String size, String price, long id) {
+public  Product(String name, String size, String price, long id) {
 	this.name = name;
 	this.price = price;
 	this.size = size;

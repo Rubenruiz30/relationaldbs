@@ -101,7 +101,8 @@ public class UserDaoImplementation implements UserDao {
 
 	@Override
 	public void update(User user) {
-	    String sql = "UPDATE users SET name=?, Surname=?, Balance=?, Password=?, Residence=?, login=?, nicknameString=?, Signup=? WHERE id=?";
+	    String sql = "UPDATE users SET name=?, Surname=?, Balance=?, Password=?, R`+"
+	    		+ "esidence=?, login=?, nicknameString=?, Signup=? WHERE id=?";
 
 	    try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
 	         PreparedStatement ps = conn.prepareStatement(sql)) {
