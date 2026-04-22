@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao {
 
     static String createTableSQL =
             "CREATE TABLE IF NOT EXISTS products (" +
-            "id BIGINT PRIMARY KEY, " +
+            "id serial primary key, " +
             "name VARCHAR(255), " +
             "size VARCHAR(255), " +
             "price VARCHAR(255)" +
