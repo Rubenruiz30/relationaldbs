@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.PseudoColumnUsage;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.postgresql.jdbc.PgArray;
@@ -125,20 +127,115 @@ public class UserDaoImplementation implements UserDao {
 	}
 	@Override
 	public User find(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	    String sql = "SELECT * FROM users WHERE id = ?";
+
+	    try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setLong(1, id);
+
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) { 
+
+
+	        	User user = new User(
+	        		    rs.getString("name"),
+	        		    rs.getString("surname"),
+	        		    rs.getDouble("balance"),
+	        		    rs.getString("password"),
+	        		    rs.getString("residence"),
+	        		    rs.getBoolean("login"),
+	        		    rs.getString("nicknameString"),
+	        		    rs.getBoolean("singup"),
+	        		    rs.getLong("id")
+	        		);
+
+	            return user;
+	        }
+
+	    } catch(SQLException e){
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
 	@Override
 	public User find(String email) {
-		// TODO Auto-generated method stub
-		return null;
+
+	    String sql = "SELECT * FROM users WHERE nicknameString = ?";
+
+	    try(Connection conn =
+	            DriverManager.getConnection(JDBC_URL,USERNAME,PASSWORD);
+
+	        PreparedStatement ps =
+	            conn.prepareStatement(sql)) {
+
+	        ps.setString(1,email);
+
+	        ResultSet rs = ps.executeQuery();
+
+	        if(rs.next()){
+
+	            User user = new User(
+	                rs.getString("name"),
+	                rs.getString("surname"),
+	                rs.getDouble("balance"),
+	                rs.getString("password"),
+	                rs.getString("residence"),
+	                rs.getBoolean("login"),
+	                rs.getString("nicknameString"),
+	                rs.getBoolean("singup"),
+	                rs.getLong("id")
+	            );
+
+	            return user;
+	        }
+
+	    } catch(SQLException e){
+	        e.printStackTrace();
+	    }
+
+	    return null;
 	}
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	    String sql = "SELECT * FROM users";
+
+	    List<User> users = new ArrayList<>();
+
+	    try(Connection conn =
+	            DriverManager.getConnection(JDBC_URL,USERNAME,PASSWORD);
+
+	        PreparedStatement ps =
+	            conn.prepareStatement(sql);
+
+	        ResultSet rs = ps.executeQuery()) {
+
+	        while(rs.next()){
+
+	            User user = new User(
+	                rs.getString("name"),
+	                rs.getString("surname"),
+	                rs.getDouble("balance"),
+	                rs.getString("password"),
+	                rs.getString("residence"),
+	                rs.getBoolean("login"),
+	                rs.getString("nicknameString"),
+	                rs.getBoolean("singup"),
+	                rs.getLong("id")
+	            );
+
+	            users.add(user);
+	        }
+
+	    } catch(SQLException e){
+	        e.printStackTrace();
+	    }
+
+	    return users;
+	}
 }

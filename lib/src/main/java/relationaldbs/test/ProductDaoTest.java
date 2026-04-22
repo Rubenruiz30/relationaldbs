@@ -9,9 +9,10 @@ public class ProductDaoTest {
 	
 	ProductDao productDaoTest= new ProductDaoImpl();
 	productDaoTest.createTable();
-	
 	productDaoTest.insert(new Product("Ruben", "Ruiz", "Admin", 0));
 	productDaoTest.update(new Product("Ruben","20","jesus", 0));
+	productDaoTest.find(1);
+	productDaoTest.findAll();
 	productDaoTest.delete(1);
 }
 

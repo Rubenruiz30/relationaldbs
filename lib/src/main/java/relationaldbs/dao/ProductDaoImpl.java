@@ -3,7 +3,9 @@ package relationaldbs.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import relationaldbs.model.Product;
@@ -102,11 +104,69 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product find(long id) {
+
+        String sql = "SELECT * FROM products WHERE id = ?";
+
+        try (Connection conn =
+                DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+
+             PreparedStatement ps =
+                conn.prepareStatement(sql)) {
+
+            ps.setLong(1,id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+
+                Product product = new Product(
+                    rs.getString("name"),
+                    rs.getString("size"),
+                    rs.getString("price"),
+                    rs.getLong("id")
+                );
+
+                return product;
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+
         return null;
     }
 
     @Override
     public List<Product> findAll() {
-        return null;
+
+        String sql = "SELECT * FROM products";
+
+        List<Product> products = new ArrayList<>();
+
+        try (Connection conn =
+                DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+
+             PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+             ResultSet rs = ps.executeQuery()) {
+
+            while(rs.next()){
+
+                Product product = new Product(
+                    rs.getString("name"),
+                    rs.getString("size"),
+                    rs.getString("price"),
+                    rs.getLong("id")
+                );
+
+                products.add(product);
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return products;
     }
 }
