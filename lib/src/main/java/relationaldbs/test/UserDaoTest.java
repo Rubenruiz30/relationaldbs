@@ -11,6 +11,7 @@ public static void main(String[] args) {
 	UserDao.insert(new User("Ruben", "Ruiz", 10, "Admin", "Rozas", true, "Ruben", false, 0));
 	UserDao.insert(new User("Diego", "Ruiz", 20, "Admin", "Rozas", true, "Diego", false, 1));
 	UserDao.update(new User("Ruben", "Ruiz", 999, "Admin123", "Madrid", true, "Ruben", true, 0)); 
+	UserDao.find(1);
 	UserDao.delete(1);
 	
 

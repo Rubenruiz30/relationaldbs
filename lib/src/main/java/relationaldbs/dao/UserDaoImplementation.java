@@ -101,13 +101,26 @@ public class UserDaoImplementation implements UserDao {
 	    }
 	}
 
+	
 	@Override
 	public void update(User user) {
-	    String sql = "UPDATE users SET name=?, Surname=?, Balance=?, Password=?, R`+"
-	    		+ "esidence=?, login=?, nicknameString=?, Signup=? WHERE id=?";
 
-	    try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	    String sql = "UPDATE users SET " +
+	                 "name=?, " +
+	                 "surname=?, " +
+	                 "balance=?, " +
+	                 "password=?, " +
+	                 "residence=?, " +
+	                 "login=?, " +
+	                 "nicknameString=?, " +
+	                 "singup=? " +
+	                 "WHERE id=?";
+
+	    try (Connection conn =
+	             DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+
+	         PreparedStatement ps =
+	             conn.prepareStatement(sql)) {
 
 	        ps.setString(1, user.getName());
 	        ps.setString(2, user.getSurname());
@@ -121,7 +134,7 @@ public class UserDaoImplementation implements UserDao {
 
 	        ps.executeUpdate();
 
-	    } catch (SQLException e) {
+	    } catch(SQLException e){
 	        e.printStackTrace();
 	    }
 	}
