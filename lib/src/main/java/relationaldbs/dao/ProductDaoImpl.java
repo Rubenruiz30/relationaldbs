@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import relationaldbs.model.Product;
+import relationdbs.util.DBHelper;
 
 public class ProductDaoImpl implements ProductDao {
 	
 
-    private static final String JDBC_URL =
-            "jdbc:postgresql://localhost:5432/happy";
-    private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "admin";
+
 
     static String createTableSQL =
             "CREATE TABLE IF NOT EXISTS products (" +
@@ -27,7 +25,7 @@ public class ProductDaoImpl implements ProductDao {
             ");";
 
     public void createTable() {
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (Connection conn = DBHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(createTableSQL)) {
 
             ps.executeUpdate();
@@ -42,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
     public boolean insert(Product products) {
         String insertSQL = "INSERT INTO products (id, name, size, price) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (Connection conn = DBHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(insertSQL)) {
 
             ps.setLong(1, products.getId());
@@ -63,7 +61,7 @@ public class ProductDaoImpl implements ProductDao {
     public boolean delete(long id) {
         String deleteSQL = "DELETE FROM products WHERE id = ?";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (Connection conn = DBHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(deleteSQL)) {
 
             ps.setLong(1, id);
@@ -87,7 +85,7 @@ public class ProductDaoImpl implements ProductDao {
     public void update(Product products) {
         String sql = "UPDATE products SET name = ?, price = ?, size = ? WHERE id = ?";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (Connection conn = DBHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, products.getName());
@@ -108,7 +106,7 @@ public class ProductDaoImpl implements ProductDao {
         String sql = "SELECT * FROM products WHERE id = ?";
 
         try (Connection conn =
-                DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        		DBHelper.getConnection();
 
              PreparedStatement ps =
                 conn.prepareStatement(sql)) {
@@ -144,7 +142,7 @@ public class ProductDaoImpl implements ProductDao {
         List<Product> products = new ArrayList<>();
 
         try (Connection conn =
-                DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        		DBHelper.getConnection();
 
              PreparedStatement ps =
                 conn.prepareStatement(sql);

@@ -11,7 +11,7 @@ public class DBHelper {
 	    private static final String USERNAME = "postgres";
 	    private static final String PASSWORD = "admin";
 	    
-	    static Connection getConnection() {
+	     public static Connection getConnection() {
 	   try {
 		return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
 	   } catch (SQLException e) {
